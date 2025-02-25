@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         deleteBtn.style.display = "inline-block";
         studentIdField.disabled = true; // Keep it disabled while editing
 
-        const response = await fetch(`http://localhost:3000/get-student/${studentId}`);
+        const response = await fetch(`https://fees-management-to3d.onrender.com/get-student/${studentId}`);
         const student = await response.json();
 
         Object.keys(student).forEach((key) => {
@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const method = studentId ? "PUT" : "POST";
         const endpoint = studentId
-            ? `http://localhost:3000/update-student/${studentId}`
-            : "http://localhost:3000/add-student";
+            ? `https://fees-management-to3d.onrender.com/update-student/${studentId}`
+            : "https://fees-management-to3d.onrender.com/add-student";
 
         await fetch(endpoint, {
             method: method,
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     deleteBtn.addEventListener("click", async function () {
         if (confirm("Are you sure you want to delete this student?")) {
-            await fetch(`http://localhost:3000/delete-student/${studentId}`, {
+            await fetch(`https://fees-management-to3d.onrender.com/delete-student/${studentId}`, {
                 method: "DELETE",
             });
             window.location.href = "dashboard.html";

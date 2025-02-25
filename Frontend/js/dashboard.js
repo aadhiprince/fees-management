@@ -52,7 +52,7 @@ async function fetchFilteredData() {
     const batch = document.getElementById("batchSelect").value;
 
     try {
-        const response = await fetch(`http://localhost:3000/get-students?department=${department}&year=${year}&semester=${semester}&batch=${batch}`);
+        const response = await fetch(`https://fees-management-to3d.onrender.com/get-students?department=${department}&year=${year}&semester=${semester}&batch=${batch}`);
         const students = await response.json();
         insertDataIntoTable(students);
     } catch (error) {
