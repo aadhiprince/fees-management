@@ -5,7 +5,6 @@ const cors = require('cors');
 const dotenv = require('dotenv')
 
 const app = express();
-const port = 3000;
 app.use(cors());
 
 // Middleware to parse JSON data
@@ -25,7 +24,7 @@ const db = mysql.createConnection({
   user:process.env.MYSQL_USER,       
   password:process.env.MYSQL_PASSWORD, 
   database:process.env.MYSQL_DATABASE,
-  port:19752
+  port:process.env.PORT
 });
 
 // Test MySQL connection
@@ -184,6 +183,6 @@ app.delete('/delete-student/:id', (req, res) => {
 
 
 // Start the server
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running on ${process.env.PORT}`);
 });
