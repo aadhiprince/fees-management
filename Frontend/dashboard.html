@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+    <div class="dashboard">
+        <h1>Dashboard</h1>
+
+        <!-- Filters Section -->
+        <div class="filters" id="filtersSection">
+            <label for="departmentSelect">Department:</label>
+            <select id="departmentSelect">
+                <option value="all">All Departments</option>
+                <option value="bba">BBA</option>
+                <option value="bca">BCA</option>
+                <option value="bcom">BCOM</option>
+                <option value="bsc_cs">BSC CS</option>
+            </select>
+
+            <label for="yearSelect">Year:</label>
+            <select id="yearSelect">
+                <option value="all">All Years</option>
+                <option value="1st year">1st Year</option>
+                <option value="2nd year">2nd Year</option>
+                <option value="3rd year">3rd Year</option>
+            </select>
+
+            <label for="semesterSelect">Semester:</label>
+            <select id="semesterSelect">
+                <option value="all">All Semesters</option>
+                <option value="semester 1">Semester 1</option>
+                <option value="semester 2">Semester 2</option>
+                <option value="semester 3">Semester 3</option>
+                <option value="semester 4">Semester 4</option>
+                <option value="semester 5">Semester 5</option>
+                <option value="semester 6">Semester 6</option>
+            </select>
+
+            <label for="batchSelect">Batch:</label>
+            <select id="batchSelect">
+                <option value="all">All Batches</option>
+                <option value="2020-2023">2020-2023</option>
+                <option value="2021-2024">2021-2024</option>
+                <option value="2022-2025">2022-2025</option>
+                <option value="2023-2026">2023-2026</option>
+                <option value="2024-2027">2024-2027</option>
+            </select>
+
+            <button onclick="fetchFilteredData()">Fetch Data</button>
+        </div>
+
+        <!-- Table Section -->
+        <div class="content">
+            <table>
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Department</th>
+                        <th>Year</th>
+                        <th>Semester</th>
+                        <th>Batch</th>
+                        <th>Total Fees</th>
+                        <th>Paid Fees</th>
+                        <th>Balance</th>
+                        <th>Status</th>
+                        <th id="editColumn">Edit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student data will be inserted here dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script defer src="./js/dashboard.js"></script>
+</body>
+</html>
