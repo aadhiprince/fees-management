@@ -92,8 +92,40 @@ function editStudent(studentId) {
     window.location.href = `edit-student.html?id=${studentId}`;
 }
 
+// Function to print the table
+function printTable() {
+    const originalContents = document.body.innerHTML;
+    const printContents = document.querySelector(".content").innerHTML;
+    
+    document.body.innerHTML = `<h1>Student Data</h1>${printContents}`;
+    window.print();
+    document.body.innerHTML = originalContents;
+    location.reload(); // Reload to restore the original page
+}
+
+// Function to download table data as an Excel file
+function downloadExcel() {
+    let table = document.querySelector("table");
+    let rows = Array.from(table.querySelectorAll("tr")).map(row => 
+        Array.from(row.querySelectorAll("th, td")).map(cell => cell.innerText).join("\t")
+    ).join("\n");
+
+    let blob = new Blob([rows], { type: "text/csv" });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "student_data.xls";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
 // Run functions on page load
 document.addEventListener("DOMContentLoaded", () => {
     setupDepartmentDropdown();
     setupTableHeader();
+
+    // Attach event listeners to buttons
+    document.getElementById("printButton").addEventListener("click", printTable);
+    document.getElementById("downloadExcelButton").addEventListener("click", downloadExcel);
 });

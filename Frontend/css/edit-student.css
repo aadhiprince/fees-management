@@ -1,106 +1,126 @@
-/* General Styles */
+/* General Page Styling */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
 /* Container */
 .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 20px auto;
+    background: white;
     padding: 20px;
-    background: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    min-width: 400px;
 }
 
-/* Heading */
+/* Title */
 h2 {
     text-align: center;
-    color: #333;
     margin-bottom: 20px;
 }
 
-/* Form Styles */
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-between;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+/* "Add Student" Button */
+#add-student-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    cursor: pointer;
 }
 
+/* Form Layout */
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two-column layout */
+    gap: 10px 15px;
+    align-items: center; /* Ensures labels and inputs align properly */
+}
+
+/* Labels */
 form label {
     font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
+    text-align: right;
+    padding-right: 10px;
+    display: flex;
+    align-items: center; /* Ensures vertical alignment with input */
+    justify-content: flex-end;
 }
 
-form input, form select {
+/* Inputs and Select Boxes */
+form select, 
+form input[type="text"],
+form input[type="number"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
-/* Buttons */
-button {
-    padding: 10px 20px;
-    background: #007bff;
-    color: white;
+/* Single-row elements spanning both columns */
+form input[type="hidden"],
+form button {
+    grid-column: span 2;
+}
+
+/* Submit & Delete Buttons */
+button[type="submit"], #delete-btn {
+    padding: 10px;
+    font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease-in-out;
 }
 
-button:hover {
-    background: #0056b3;
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: #fff;
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background: #007bff;
+/* Submit Button */
+button[type="submit"] {
+    background-color: #007bff;
     color: white;
 }
 
-tr:nth-child(even) {
-    background: #f2f2f2;
+/* Delete Button - Updated */
+#delete-btn {
+    background-color: #dc3545;
+    color: white;
+    transition: background 0.3s ease;
 }
 
-tr:hover {
-    background: #ddd;
+#delete-btn:hover {
+    background-color: #b02a37;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
+/* Responsive Layout (Mobile View) */
+@media (max-width: 600px) {
     form {
-        flex-direction: column;
+        grid-template-columns: 1fr; /* Single column for small screens */
     }
 
-    table {
-        font-size: 14px;
+    form button {
+        grid-column: span 1;
+    }
+
+    form label {
+        text-align: left;
+        justify-content: flex-start;
     }
 }
-
+/* Delete Button - Always Visible */
+#delete-btn {
+    background-color: #dc3545;
+    color: white;
+    transition: background 0.3s ease;
+    display: block; /* Ensure it's always visible */
+    margin-top: 10px; /* Adds spacing */
+}

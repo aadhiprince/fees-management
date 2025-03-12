@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv')
 
 const app = express();
+const port = 3000;
 app.use(cors());
 
 // Middleware to parse JSON data
@@ -102,7 +103,7 @@ app.get('/get-students', (req, res) => {
       return res.status(500).json({ message: 'Database error' });
     }
     res.json(result);
-    console.log(result) // Return filtered students
+    // console.log(result) // Return filtered students
   });
 });
 // ✅ Get Student by ID (For Editing)
@@ -123,8 +124,6 @@ app.get('/get-student/:id', (req, res) => {
     res.json(result[0]);
   });
 });
-
-// ✅ Add New Student
 app.post('/add-student', (req, res) => {
   const { student_id, name, department, year, semester, batch, paid, total, status } = req.body;
 
@@ -132,13 +131,27 @@ app.post('/add-student', (req, res) => {
     return res.status(400).json({ message: 'All fields except paid are required' });
   }
 
-  const query = 'INSERT INTO students (student_id, name, department, year, semester, batch, paid, total, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
-  db.query(query, [student_id, name, department, year, semester, batch, paid || 0, total, status || 'unpaid'], (err, result) => {
+  // Check if student_id already exists before inserting
+  const checkQuery = 'SELECT COUNT(*) AS count FROM students WHERE student_id = ?';
+  db.query(checkQuery, [student_id], (err, results) => {
     if (err) {
-      console.log('Error adding student:', err);
+      console.log('Error checking student:', err);
       return res.status(500).json({ message: 'Database error' });
     }
-    res.json({ message: 'Student added successfully', student_id, id: result.insertId });
+
+    if (results[0].count > 0) {
+      return res.status(400).json({ message: 'Student ID already exists' });
+    }
+
+    // Insert new student
+    const insertQuery = 'INSERT INTO students (student_id, name, department, year, semester, batch, paid, total, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    db.query(insertQuery, [student_id, name, department, year, semester, batch, paid || 0, total, status || 'unpaid'], (err, result) => {
+      if (err) {
+        console.log('Error adding student:', err);
+        return res.status(500).json({ message: 'Database error' });
+      }
+      res.json({ message: 'Student added successfully', student_id, id: result.insertId });
+    });
   });
 });
 
@@ -183,6 +196,6 @@ app.delete('/delete-student/:id', (req, res) => {
 
 
 // Start the server
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on ${process.env.PORT}`);
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
 });
