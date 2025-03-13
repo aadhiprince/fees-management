@@ -124,8 +124,19 @@ function downloadExcel() {
 document.addEventListener("DOMContentLoaded", () => {
     setupDepartmentDropdown();
     setupTableHeader();
+    setupAddStudentButton();
 
     // Attach event listeners to buttons
     document.getElementById("printButton").addEventListener("click", printTable);
     document.getElementById("downloadExcelButton").addEventListener("click", downloadExcel);
 });
+function setupAddStudentButton() {
+    const role = getUserRole();
+    const addStudentButton = document.getElementById("addStudentButton");
+
+    if (role === "admin") {
+        addStudentButton.style.display = "block"; // Show the button
+    } else {
+        addStudentButton.style.display = "none"; // Hide the button
+    }
+}

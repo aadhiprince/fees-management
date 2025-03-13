@@ -24,7 +24,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     spinner.style.display = "inline-block";
 
     try {
-        const response = await fetch("https://fees-management-to3d.onrender.com", {
+        const response = await fetch("https://fees-management-to3d.onrender.com/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ username, password })

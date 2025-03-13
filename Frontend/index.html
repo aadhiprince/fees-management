@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | College Fees Management</title>
-    <link rel="stylesheet" href="css/login.css">
+    <title>Fees Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="loginForm">
-            <label for="username">Username:</label>
-            <input type="text" id="username" required>
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">Fees<span>Manager</span></div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html" class="login-btn">Login</a></li>
+        </ul>
+    </nav>
 
-            <label for="password">Password:</label>
-            <input type="password" id="password" required>
-
-            <button type="submit">Login</button>
-        </form>
-        <p id="error-msg" class="error"></p>
-    </div>
-
-    <script src="js/login.js"></script>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to the <span>Fees Management System</span></h1>
+            <p>Effortlessly track and manage student fees with accuracy and efficiency.</p>
+            <a href="login.html" class="btn">Get Started</a>
+        </div>
+    </section>
 </body>
 </html>

@@ -15,7 +15,19 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+#addStudentButton {
+    position: absolute;
+    top: 30px;
+    right: 70px;
+    z-index: 9999;
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
 h1 {
     text-align: center;
     color: #2c3e50;
