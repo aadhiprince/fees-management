@@ -41,20 +41,21 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = Object.fromEntries(formData.entries());
 
         // Convert year and total to numbers (if applicable)
-        data.year = parseInt(data.year, 10);
+        
         data.total = parseFloat(data.total);
 
         console.log("Form Data Before Sending:", data); // Debugging step
 
         // Basic validation: Ensure required fields are filled
-        if (!data.student_id || !data.name || !data.department || !data.year || !data.semester || !data.batch || !data.total) {
+        console.log(data)
+        if ( !data.name || !data.department || !data.year || !data.semester || !data.batch || !data.total) {
             showError("All fields except Paid are required.");
             return;
         }
 
         const method = studentId ? "PUT" : "POST";
         const endpoint = studentId
-            ? `https://fees-management-to3d.onrender.com/${studentId}`
+            ? `https://fees-management-to3d.onrender.com/update-student/${studentId}`
             : `https://fees-management-to3d.onrender.com/add-student`;
 
         try {
